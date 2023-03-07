@@ -1,55 +1,77 @@
 package Collections;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-/** Спортзал. Реализовать логику определения занят тренажер/железо или свободно
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
+/**
+ * Спортзал. Реализовать логику определения занят тренажер/железо или свободно
  * Завести 20 тренажеров/железок
  * Использовать мапу
- * 	метод1 - занятие тренажера
- * 	метод2 - поиск и вывод всех занятых тренажеров/железок
- * 	метод3 - получить булево значение, свободен тренажер/железо или нет*/
+ * метод1 - занятие тренажера
+ * метод2 - поиск и вывод всех занятых тренажеров/железок
+ * метод3 - получить булево значение, свободен тренажер/железо или нет
+ */
 
 
 public class Gym {
     public static void main(String[] args) {
 
-        Map<String, String> equip = new HashMap<>();
+        Map<String, Boolean> equip = new HashMap<>();
         // Завести 20 тренажеров/железок
-        equip.put("Штанга", "Свободен");
-        equip.put("Гантели", "Занят");
-        equip.put("Скамья", "Свободен");
-        equip.put("Канаты", "Свободен");
-        equip.put("Дорожка", "Свободен");
-        equip.put("Велосипед", "Занят");
-        equip.put("Перекладина", "Свободен");
-        equip.put("Шар", "Свободен");
-        equip.put("Гиря", "Свободен");
-        equip.put("Скакалка", "Занят");
-        equip.put("Ринг", "Свободен");
-        equip.put("Груша", "Свободен");
-        equip.put("Перчатки", "Занят");
-        equip.put("Блин 2.5", "Свободен");
-        equip.put("Блин 5", "Свободен");
-        equip.put("Блин 10", "Занят");
-        equip.put("Блин 15", "Свободен");
-        equip.put("Блин 20", "Занят");
-        equip.put("Блин 25", "Свободен");
-        equip.put("Пояс", "Свободен");
-        equip.put("Утяжелители", "Занят");
+        equip.put("Штанга", TRUE);
+        equip.put("Гантели", FALSE);
+        equip.put("Скамья", FALSE);
+        equip.put("Канаты", TRUE);
+        equip.put("Дорожка", FALSE);
+        equip.put("Велосипед", TRUE);
+        equip.put("Перекладина", FALSE);
+        equip.put("Шар", FALSE);
+        equip.put("Гиря", FALSE);
+        equip.put("Скакалка", TRUE);
+        equip.put("Ринг", FALSE);
+        equip.put("Груша", TRUE);
+        equip.put("Перчатки", FALSE);
+        equip.put("Блин 2.5", FALSE);
+        equip.put("Блин 5", FALSE);
+        equip.put("Блин 10", TRUE);
+        equip.put("Блин 15", TRUE);
+        equip.put("Блин 20", TRUE);
+        equip.put("Блин 25", TRUE);
+        equip.put("Пояс", TRUE);
+        equip.put("Утяжелители", TRUE);
 
-        // Занятие тренажера
-        if (equip.containsValue("Свободен")) {
-            equip.replace("Гиря","Занят");
-        }
-        System.out.println(equip.get("Гиря"));
-
-        //Поиск и вывод всех занятых тренажеров/железок
-
-        for (Map.Entry<String, String> entry : equip.entrySet()) {
-            System.out.println(entry.getKey());}
-
+       // System.out.println(getTakingStatus(equip, FALSE));
         //Получить булево значение, свободен тренажер/железо или нет*/
+        equip.forEach((k,v) -> {
+            System.out.println(k +" "+ v);});
+        }
 
 
+    // Занятие тренажера
+    private static void takeEquip(Map<String, Boolean> equip, String takingEquip) {
+        if (equip.containsValue(TRUE)) {
+            equip.replace(takingEquip, Boolean.FALSE);
+            System.out.println(equip.get(takingEquip + "Занят вами"));
+        }
+        {
+            System.out.println("Тренажер Занят");
+        }
+    }
+    //Поиск и вывод всех занятых тренажеров/железок
+    private static <K, V> Set<K> getTakingStatus(Map<K, V> map, V value) {
+        Set<K> status = new HashSet<>();
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            if (value.equals(entry.getValue())) {
+                status.add(entry.getKey());
+            }
+        }
+        return status;
     }}
+    //Получить булево значение, свободен тренажер/железо или нет*/
+
+
