@@ -35,13 +35,14 @@ public class MapDZ {
         // clear - удаление всех элементов мапы.
         map.clear();
         System.out.println(map);
-    }
 
         //entrySet
-        Map.Entry<Integer, String> entry: map.entrySet() {
-        System.out.println(entry.getValue());
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+
+            System.out.println(entry.getValue());
 
 
+        }
     }
 }
 
